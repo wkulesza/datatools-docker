@@ -1,0 +1,594 @@
+NEWS for cliapp
+===============
+
+Version 1.20180812.1+git, not yet released
+------------------------------------------
+
+
+Version 1.20180812.1, released 2018-08-12
+----------------------------------------
+
+
+Version 1.20180812, released 2018-08-12
+----------------------------------------
+
+* Fix file conflict between python3 and old versions of python2
+  versions of the Debian package.
+
+Version 1.20180121, released 2018-01-21
+----------------------------------------
+
+* The `runcmd` timeout behaviour has changed a little. Previously, a
+  timeout meant the command would be terminated. Termination is now
+  optional: if the `timeout_callback` function returns a true value,
+  termination happens. Otherwise not.
+
+Version 1.20170827, released 2017-08-27
+----------------------------------------
+
+* Fix settings to not use Unicode strings (drop import of Unicode
+  literals from the future).
+
+Version 1.20170823, released 2017-08-23
+----------------------------------------
+
+* Only Debian packaging changes.
+
+Version 1.20170820, released 2017-08-20
+----------------------------------------
+
+* `cliapp.runcmd` now has a optional arguments `output_timeout` and
+  `timeout_callback`.
+* Meliae the Python memory profiler is no longer supported.
+* Sphinx-generated documentation is no longer supported. It was
+  unmainained and rubbish by now.
+* Added support for Python 3, thanks to patches from Stuart Prescott.
+
+Version 1.20160724, released 2016-07-24
+----------------------------------------
+
+* Debian packaging change: running automated checks during package
+  build.
+
+Version 1.20160316, released 2016-03-16
+---------------------------------------
+
+* The `--help` now shows the previously hidden options
+  `--dump-config-names`, `--list-config-files`, and
+  `--generate-manpage`. These are not frequently used, but sometimes
+  they are useful, and there's no point making them difficult to find.
+
+* The **cliapp**(5) manual page now documents the units for options
+  whose value is a size in bytes.
+
+Version 1.20151108, released 2016-01-09
+---------------------------------------
+
+Bug fix:
+
+* The generated manpages used to have an equals sign for short options
+  with an argument. For example, `-e=REGEX`. This has now been fixed
+  to show the correct form, `-eREGEX`, instead.
+
+* If a user specifies a config file with `--config`, it must exist.
+
+* The automatically added negated boolean options (`--no-foo` added
+  for `--foo`) are now sorted after the non-negated ones in manual
+  pages.
+
+New features:
+
+* Configuration files may now also be in YAML format, if names with an
+  `.yaml` suffix. This also means that the `python-yaml` library
+  **MUST** installed. It is not an optional dependency.
+
+* If the `python-xdg` library is available, it is used to allow user
+  to specify locations of XDG Base Directory locations.
+
+* Log to STDERR support has been added. Use `--log=stderr`. Patch by
+  Roland Mas.
+
+Version 1.20150829
+------------------
+
+Important, backwards incompatible bug fixes:
+
+* Jan Gerber fixed string list option handling. Command line options
+  no longer parse values by commas, so that `--foo=bar,foobar` results
+  in a single value `bar,foobar`, instead of two values (`bar` and
+  `foobar`). Also, in configuration files, values may be quoted with
+  double quotes.
+
+Bug fixes:
+
+* Memory use profiling with Meliae was fixed.
+
+New features:
+
+* Richard Ipsum added the `cliapp.Application.get_subcommand_usage`
+  method to return a short usage text for a subcommand. This allows
+  better error message.
+
+Version 1.20150701
+------------------
+
+* Lars Wirzenius added the `ssh_options` keyword argument to
+  `cliapp.ssh_runcmd` to allow adding command line options to the ssh
+  program.
+
+* Lars Wirzenius added the `remote_cwd` keyword argument to
+  `cliapp.ssh_runcmd` to allow the caller to easily change to a
+  directory on the server.
+
+* Support for `heapy` memory profile has been dropped. It's not
+  packaged for Debian, and is rarely available anywhere.
+
+
+Version 1.20150305
+------------------
+
+* Richard Ipsum added callbacks to `cliapp.runcmd` for handling
+  captured stdout/stderr output from the pipeline. This allows, for
+  example, progress reporting during a long-running command.
+
+* Richard Maw and Richard Ipsum fixed `cliapp.runcmd` to close file
+  descriptors correctly, to make `cliapp.runcmd(['cat', '/dev/zero'],
+  ['false'])` work correctly. Previously, the pipeline would never
+  finish, but now it does, because closing an unnecessary file
+  descriptor in the parent results in `SIGPIPE` being sent to the
+  `cat` process once `false` terminates.
+
+* Richard Maw changed `cliapp.runcmd` so that the stderr of all
+  commands in the pipeline are collected, when stderr is set to
+  `subprocess.PIPE`.
+
+Version 1.20140719
+------------------
+
+* The way logging is set up has been split into smaller methods, to
+  allow overriding better. See `setup_logging_handler_for_file`,
+  `setup_logging_formatter_for_file`, and
+  `setup_logging_formatter_for_syslog`.
+
+* Plugins no longer need to define a `disable` method: the default
+  implementation is now a no-op, instead of raising
+  `NotImplementedError`.
+
+Bug fixes:
+
+* When getting help for a subcommand, cliapp would crash saying
+  `get_help_text_formatter` couldn't be found. This has been fixed.
+
+Version 1.20140315
+------------------
+
+* Portability patch to disable VmRSS reporting on non-Linux platforms.
+  The code assumed that /proc/self/status exists, but that's only true
+  on Linux. Patch from Itamar Turner-Trauring.
+
+* `cliapp` now logs the current working directory, uid, effective uid,
+  gid, and effective gid at startup.
+
+* `cliapp` (`Settings.load_configs`) now reports an unknown
+  variable in a configuration file with a nice error message, rather
+  than a stack trace.
+
+* A new method, `cliapp.Application.get_subcommand_help_formatter`
+  allows overriding how the full help text for a subcommand is to be
+  formatted. This can be useful for allowing help texts be marked up
+  in, say, Markdown.
+
+* The `cliapp.Settings.require` method now accepts many setting names,
+  and check for all of them. Patch by Stephen Judd.
+
+Version 1.20130808
+------------------
+
+* Bug fix to cliapp.runcmd pipeline handling: the pipeline now returns
+  failure if any of the processes fails, rather than only the last one.
+  Found and reported by Richard Maw.
+* Fix a problem in the pipeline code in runcmd. Reported and fix provided
+  by Richard Maw.
+
+Version 1.20130613
+------------------
+
+* cliapp(5) now mentions subcommands and the automatic subcommand
+  "help".
+* `ssh_runcmd` now has the `tty` keyword argument to enable ssh
+  allocation of pseudo-TTYs. Patch from Jannis Pohlmann.
+* The `help` subcommand now writes a useful error message, instead of
+  a stack trace, if given an unknown subcommand. Reported by Rob Taylor.
+
+Version 1.20130424
+------------------
+
+* The API documentation has been split into more than one page.
+
+Bug fixes:
+
+* `cliapp.runcmd` no longer dies from the `SIGWINCH` signal.
+
+Version 1.20130313
+------------------
+
+* Add `cliapp.Application.compute_setting_values` method. This allows
+  the application to have settings with values that are computed after
+  configuration files and the command line are parsed.
+* Cliapp now logs the Python version at startup, to aid debugging.
+* `cliapp.runcmd` now logs much less during execution of a command. The
+  verbose logging was useful while developing pipeline support, but has
+  now not been useful for months.
+* More default settings and options have an option group now, making
+  `--help` output prettier.
+* The `--help` output and the output of the `help` subcommand now only
+  list summaries for subcommands. The full documentation for a subcommand
+  can be seen by giving the name of the subcommand to `help`.
+* Logging setup is now more overrideable. The `setup_logging` method
+  calls `setup_logging_handler_for_syslog`,
+  `setup_logging_handler_for_syslog`, or
+  `setup_logging_handler_to_file`, and the last one calls
+  `setup_logging_format` and `setup_logging_timestamp` to create the
+  format strings for messages and timestamps. This allows applications
+  to add, for example, more detailed timestamps easily.
+* The process and system CPU times, and those of the child processes,
+  and the process wall clock duration, are now logged when the memory
+  profiling information is logged.
+* Subcommands added with `add_subcommand` may now have aliases.
+  Subcommands defined using `Application` class methods named `cmd_*`
+  cannot have aliases.
+* Settings and subcommands may now be hidden from `--help` and `help`
+  output. New option `--help-all` and new subcommand `help-all` show
+  everything.
+* cliapp(5) now explains how `--generate-manpage` is used. Thanks to
+  Enrico Zini for the suggestion.
+* New function `cliapp.ssh_runcmd` for executing a command remotely
+  over ssh. The function automatically shell-quotes the argv array
+  given to it so that arguments with spaces and other shell meta-characters
+  work over ssh.
+* New function `cliapp.shell_quote` quotes strings for passing as shell
+  arguments.
+* `cliapp.runcmd` now has a new keyword argument: `log_error`. If set to
+  false, errors are not logged. Defaults to true.
+
+Bug fixes:
+
+* The process title is now set only if `/proc/self/comm` exists.
+  Previously, on the kernel in Debian squeeze (2.6.32), setting the
+  process title would fail, and the error would be logged to the
+  terminal. Reported by William Boughton.
+* A setting may no longer have a default value of None.
+
+Version 1.20121216
+------------------
+
+* Options in option groups are now included in manual page SYNOPSIS and
+  OPTIONS sections.
+* `--log=syslog` message format improvement by Daniel Silverstone.
+  No longer includes a timestamp, since syslog adds it anyway. Also,
+  the process name is now set on Linux.
+* Make the default subcommand argument synopsis be an empty string, instead
+  of None. Reported by Sam Thursfield.
+* Meliae memory dumping support has been fixed. Reported by Joey Hess.
+* Memory profiling reports can now be done at minimum intervals in
+  seconds, rather than every time the code asks for them. This can
+  reduce the overhead of memory profiling quite a lot.
+* If there are any subcommands, cliapp now adds a subcommand called `help`,
+  unless one already exists.
+* For every boolean setting foo, there will no be a --no-foo option to be
+  used on the command line.
+
+Version 1.20120929
+------------------
+
+* Print error messages from `SystemExit` exceptions. As a side effect,
+  this fixes the problem that an unknown subcommand would not cause an
+  error message to be printed.
+* Fix a busy-wait problem when `runcmd` runs a command with both
+  standard output and error redirected to files and there was nothing
+  to feed to its standard input (i.e., `runcmd` didn't need to write
+  to the command, or read any of its output). This problem was found
+  and fixed during work done for Codethink Limited.
+
+Version 1.20120630
+------------------
+
+* New version numbering scheme: `API.DATE`.
+* cliapp now logs the command line and all settings, and the environment
+  variables when the application starts. This helps when debugging problems
+  other people are having.
+* The `cliapp.runcmd` and `cliapp.runcmd_unchecked` functions are now
+  callable without having a `cliapp.Application` instance. This makes
+  it easier to use them in large programs.
+* All types of settings can now have a `group` keyword argument for
+  grouping them in the `--help` output.
+
+Version 0.29, released 2012-05-09
+---------------------------------
+
+* Pointless error message about exit code of an application removed.
+  It is one of the mysteries of the universe why this ever made sense
+  at all.
+
+Version 0.28, released 2012-05-08
+---------------------------------
+
+* Log files are now created using a 0600 file mode by default. The new
+  option `--log-mode` can be used to change that.
+* Logging can now be disabled using `--log=none`. This is useful for
+  overriding on the command a logging setting from a configuration file.
+* `for name in settings` and `settings.keys()` now work, making the settings
+  class act more like an object. Thanks to Jannis Pohlmann for giving the
+  inpiration for this change.
+* Settingses can now be grouped, using the new keyword argment `group` to
+  the various methods to add a new setting. The grouping affects `--help`
+  output only. The value to `group` is the title of the group.
+* There is now a plugin system included in cliapp.
+
+Version 0.27, released 2012-02-17
+---------------------------------
+
+* Bug fix: The `runcmd` and `runcmd_unchecked` methods now properly add the
+  name of the program that failed to execute to the error message. This
+  did not always happen previously, depending on race conditions on getting
+  errors from a child process.
+
+Version 0.26, released 2012-02-11
+---------------------------------
+
+* `cliapp.Settings` now allows access to all sections in configuration
+  files. The new `as_cp` method returns a `ConfigParser` instance, which
+  is set to the current value of every registered setting, in the `config`
+  section, plus any additional sections in the configuration files that
+  have been read.
+
+Version 0.25.2, released 2012-02-08
+---------------------------------
+
+* Fixed another bug in the process pipelining support. This time it was
+  a silly Python optional argument handling problem.
+
+Version 0.25.1, released 2012-02-08
+---------------------------------
+
+* Fix bug in the process pipelining support.
+
+Version 0.25, released 2012-02-06
+---------------------------------
+
+* Improved error message for when executing a non-existent command.
+* `cliapp.Application.runcmd` and `runcmd_unchecked` can now execute a
+  pipeline.
+* New overrideable methods `cliapp.Application.setup` and `cleanup` make
+  it easier to add code to be run just before and after `process_args`.
+
+Version 0.24, released 2012-01-14
+---------------------------------
+
+* Show the subcommand synopsis in --help output.
+* Bug fix: setting a boolean setting to false in a configuration file now
+  works. Thanks to Richard Maw for the bug report.
+
+Version 0.23, released 2011-12-18
+---------------------------------
+
+* Back off from using the `logging.NullHandler` class, since that exists
+  only in Python 2.7, and we want to support 2.6 too.
+
+Version 0.22, released 2011-12-03
+---------------------------------
+
+* The `runcmd` and `runcmd_unchecked` methods have had an API change: the
+  `stdin` argument is now called `feed_stdin`. This is so that callers may
+  use `stdin` to control how the `subprocess.Popen` module sets up the
+  child program's standard input.
+* Syslog support has been added. Use `--log=syslog`.
+
+Version 0.21, released 2011-10-02
+---------------------------------
+
+* License changed to GPL version 2 or later.
+
+Version 0.20, released 2011-09-17
+---------------------------------
+
+* `cliapp(5)` manual page added, to explain in one place how applications
+  built on cliapp will parse command lines and configuration files.
+* The manual pages can now specify how the non-option arguments are formatted,
+  in manual pages, including for each subcommand separately.
+
+Version 0.19, released 2011-09-04
+---------------------------------
+
+* Subcommand descriptions are formatted more prettily, in --help output.
+* When a string list setting is set in a configuration file, any use of
+  the corresponding option overrides the value from the configuration
+  file, rather than appending to it.
+
+Version 0.18, released 2011-08-24
+---------------------------------
+
+* New `cliapp.Settings.dump_config` method, which can be useful, for example,
+  if an application wants to save its configuration, or log it at startup.
+
+Version 0.17, released 2011-08-22
+---------------------------------
+
+* Give more humane error messages for IOError and OSError exceptions.
+* The `runcmd` and `runcmd_unchecked` methods now allow overriding
+  the standard output and error redirections.
+* Memory profiling statistics can now be logged by the application,
+  by calling the `cliapp.Application.dump_memory_profile` method.
+  The `--dump-memory-profile` setting is provided by the user to
+  specify how the profiling is done: simple RSS memory size, and
+  meliae and heapy Python memory profilers are supported.
+
+Version 0.16, released 2011-08-19
+---------------------------------
+
+* An EPIPE error when writing to stdout is suppressed. This avoids a Python
+  stack trace or other error when user pipes output to, say, less, and
+  quits less before the application finishes writing everything to stdout.
+* Improve description of --log. (Thanks, Tapani Tarvainen.)
+
+Version 0.15.1, released 2011-08-03
+-----------------------------------
+
+* Fix parsing of string list options: their values were being added
+  twice so `-foo=bar` would result in `settings['foo']` having the
+  values `['bar', 'bar']`. Oops. As a result, the `parse_args` method
+  has a new keyword argument, `configs_only`, which it should pass
+  onto `Settings.parse_args`.
+* The argument names for the `process_input_line` method have been
+  improved.
+
+Version 0.15, released 2011-08-02
+---------------------------------
+
+* `cliapp.Application` now has a `subcommands` attribute, which is a
+  directory mapping subcommand names to the functions that implement
+  them. This provides an alternative way to define new subcommands,
+  which may be useful in plugin-based applications.
+* New method `cliapp.Application.runcmd_unchecked`.
+* There are some new options provided by defaults:
+  - `--list-config-files` lists the config files the application will try
+    to read
+  - `--config=FILE` adds a file to the list of configuration files to be
+    read
+  - `--no-default-configs` prevents any of the default configuration files
+    from being used; any `--config` options used after this one will still
+    be read
+* Parsing of string list values in config files has been fixed. INI files
+  have no standard syntax for presenting files (maybe JSON would be a
+  better option), but I invented something. How very clever of me.
+  At the same time, `--dump-config` now formats string list values
+  properly.
+* Default values for string lists work better now: the default is used,
+  unless the user specifies some values, in which only the values from
+  the user are used.
+
+Version 0.14, released 2011-07-20
+---------------------------------
+
+* Start and end of program are now logged. This makes it easier to read
+  log files.
+* Commands run by the `runcmd` method are now logged.
+* Bugfix: `runcmd` now passes extra arguments to `subprocess.Popen`.
+* A `Settings.require` method is added, so that it's easy to fail if the
+  user has failed the give an option that is required in a given situation.
+  (Mandatory options are a bit weird, but sometimes they happen.)
+* Subcommands may now be added explicitly, using the
+  `Application.add_subcommand` method. This is helpful for applications that
+  support plugins, for example.
+
+Version 0.13, released 2011-06-18
+---------------------------------
+
+* Change default log level to be `debug`. Nothing is logged unless the
+  user requests it, and if they do, they probably want to debug something,
+  so this seems like the natural default.
+* Log files are now rotated. See options --log-max, --log-keep.
+* Log files are formatted in a nicer way now.
+* Now registered with PyPI.
+* String list settings now have a more sensible handling of default values.
+  Previously the default value would always be used and user-supplied
+  values would be appended to the default. Now user-supplied values
+  replace the default value entirely.
+* The old API for adding settings (`self.settings.add_string_setting` etc)
+  is gone. This should not bother anyone, since I am the only known user
+  of cliapp so far, and I've fixed my stuff already.
+* A `metavar` is provided if caller does not provide one. This fixes
+  `--generate-manpage` issue where an option would be documented as not
+  having an argument unless `metavar` was set explicitly.
+* `cliapp.Application.runcmd` runs external programs and captures their
+  standard output.
+* The option parser is now created in a separate method than the one that
+  uses it. This allows applications to modify the option parser in whatever
+  way they want.
+* Only the basename of a program (from `sys.argv[0]`) is used when
+  determining `progname`. This fixes a problem where config files
+  could not be found because `progname` contained slashes.
+
+Version 0.12, released 2011-05-29
+---------------------------------
+
+* The new option `--generate-manpage` allows one to fill in the OPTIONS
+  section of a manpage.
+* `cliapp` now supports **subcommands**, e.g., "git help".
+* API documentation is now formatted using Sphinx.
+
+Version 0.11, released 2011-03-21
+---------------------------------
+
+* `pydoc cliapp` now works more usefully, and includes documentation for
+  the various classes exported, not just a list of packages.
+* Bugfix: if user specifies no log file, logging no longer happens to
+  the standard output. This prevents exceptions from being reported twice.
+* Log format now includes timestamps.
+* New settings can now be added using shorter method names:
+  `self.settings.string` rather than `self.settins.add_string_setting`.
+  The old method names continue to work.
+
+Version 0.10, released 2011-03-21
+--------------------------------
+
+* The `metavar` argument for `optparse.OptionParser` can now be set for
+  settings. This makes for prettier `--help` output.
+* The default value for integer settings is now 0, not `None`.
+* [[README]] now has some more documentation of how to use the framework.
+
+Version 0.9, released 2011-03-21
+--------------------------------
+
+* Bugfix: Boolean options now work correctly, even in --help output.
+
+Version 0.8, released 2011-03-20
+--------------------------------
+
+* Bugfix: duplicate option names in --help output fixed.
+* Exception handling has been improved: stack traces are now logged, and
+  there's a `cliapp.AppException` base class for application exceptions,
+  which will cause an error message to be written out, but no stack trace.
+  All other exceptions cause a stack trace, so as to make it easier to debug
+  things.
+
+Version 0.7, released 2011-03-12
+--------------------------------
+
+* Add configuration file support.
+* API change: all settings are now in a class of their own, and are accessed
+  via `app.settings`, e.g., `app.settings['output']`. See the `cliapp.Settings`
+  class. This change breaks old code, sorry. But since I am still the only
+  user, nobody minds.
+* The callback setting type is now gone.
+* Application name can now be set via the Application class's initializer
+  (optional `progname` argument), or by assigning to
+  `cliapp.Settings.progname`. If not set explicitly, it is set from
+  `sys.argv[0]`.
+
+Version 0.6, released 2011-02-19
+--------------------------------
+
+* New option types: list of strings, choice of strings, callback.
+* New standard option: --dump-setting-names.
+* Python profiling support: automatically if the right environment variable
+  is set. If the process's argv[0] is 'foo', and 'FOO_PROFILE' is set, then
+  profiling happens.
+* Documentation improvments.
+
+Version 0.5, released 2011-02-13
+--------------------------------
+
+* Catches exceptions and prints error message, instead of having the Python
+  interpreter do a stack trace.
+* Support more traditional Unix command line filter behavior: read from
+  stdin if no arguments are given, or a dash ('-') is given as the filename.
+* Count files and lines in files.
+* New options: --output, --log, --log-level.
+
+
+Version 0.4, released 2011-01-30
+--------------------------------
+
+* Bugfix: Subclasses can now actually set the application version, so
+  that --version works.

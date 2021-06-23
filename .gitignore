@@ -1,0 +1,6 @@
+.idea/
+datatools-server/config/go-europa.pem
+datatools-server/config/env-server.yml
+datatools-server/config/server.yml
+datatools-ui/config/env-client.yml
+datatools-ui/config/settings-client2.yml

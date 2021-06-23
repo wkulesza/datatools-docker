@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -eu
+
+python -m CoverageTestRunner --ignore-missing-from=without-tests
+python3 -m CoverageTestRunner --ignore-missing-from=without-tests
+rm -f .coverage
+pep8 cliapp
+if command -v pylint3 > /dev/null
+then
+    title "Static checking"
+    PYTHONPATH=. pylint3 --rcfile=pylint.conf cliapp *.py test-plugins/*.py
+fi

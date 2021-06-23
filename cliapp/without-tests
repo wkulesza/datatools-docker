@@ -1,0 +1,16 @@
+./cliapp/__init__.py
+./cliapp/util.py
+./example.py
+./example2.py
+./setup.py
+./cliapp/genman.py
+./cliapp/version.py
+./doc/conf.py
+./test-plugins/oldhello_plugin.py
+./test-plugins/hello_plugin.py
+./test-plugins/wrongversion_plugin.py
+./test-plugins/aaa_hello_plugin.py
+example4.py
+example5.py
+example6.py
+example_runcmd.py

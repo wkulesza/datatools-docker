@@ -1,0 +1,375 @@
+python-cliapp (1.20180812.1+git-1) UNRELEASED; urgency=medium
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 12 Aug 2018 15:22:04 +0300
+
+python-cliapp (1.20180812.1-1) unstable; urgency=medium
+
+  * New upstream version.
+  * Add build-dep on dh-python.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 12 Aug 2018 15:22:03 +0300
+
+python-cliapp (1.20180812-1) unstable; urgency=medium
+
+  * New upstream version.
+  * Add Breaks and Replaces on the python-cliapp version prior to
+    buster to python3-cliapp, because the python3-cliapp package
+    now has the cliapp(5) manpage. It used to be in python-cliapp.
+    Having the manpage at all was probably a mistake, since it seems
+    no-one in the history of the world has read it without being
+    forced to. (Closes: #874421)
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 12 Aug 2018 10:22:12 +0300
+
+python-cliapp (1.20180121-1) unstable; urgency=medium
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 21 Jan 2018 17:20:13 +0200
+
+python-cliapp (1.20170827-1) unstable; urgency=medium
+
+  * New upstream version. (Closes: #873298)
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 27 Aug 2017 10:22:16 +0100
+
+python-cliapp (1.20170823-1) unstable; urgency=medium
+
+  * New upstream version.
+  * debian/copyright: Add Codethink to debian/copyright. (cliapp was
+    worked by me, Richard Maw, and Richard Ipsum, while working at
+    Codethink.)
+
+ -- Lars Wirzenius <liw@liw.fi>  Wed, 23 Aug 2017 18:54:02 +0300
+
+python-cliapp (1.20170820-1) unstable; urgency=medium
+
+  * New upstream version.
+  * Require Python 2.7.
+  * Bump Standards-Version to 3.9.8. No changes required.
+  * Drop build-dep on python-meliae and python-sphinx.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 20 Aug 2017 10:58:50 +0300
+
+python-cliapp (1.20160724-1) unstable; urgency=medium
+
+  * Change debian/rules to run automated tests during build.
+  * Add build-dependencies that are now require: python-meliae, python-xdg.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 24 Jul 2016 21:50:40 +0300
+
+python-cliapp (1.20160316-1) unstable; urgency=medium
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Wed, 16 Mar 2016 19:27:16 +0200
+
+python-cliapp (1.20160109-1) unstable; urgency=medium
+
+  * New upstream version.
+    * Fix "package suggests non-existing package" using provided patch
+      to correct the dependency package name. (Closes: #804268)
+    * Adds hard dependency on python-yaml. debian/control updated
+      accordingly.
+    * Adds an optional use of python-xdg to allow XDG Base Directory
+      specification support. (Closes: #677117)
+
+ -- Lars Wirzenius <liw@liw.fi>  Sat, 09 Jan 2016 12:32:32 +0200
+
+python-cliapp (1.20150829-1) unstable; urgency=medium
+
+  * New upstream version.
+      * Fix "Allow commas in StringListSetting values" (Closes: #784576)
+
+ -- Lars Wirzenius <liw@liw.fi>  Sat, 29 Aug 2015 20:24:30 +0300
+
+python-cliapp (1.20150701-1) unstable; urgency=medium
+
+  * New upstream version.
+  * Source package format changed to 3.0 (quilt).
+
+ -- Lars Wirzenius <liw@liw.fi>  Wed, 01 Jul 2015 08:30:01 +0300
+
+python-cliapp (1.20150305-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sat, 19 Jul 2014 16:37:17 +0100
+
+python-cliapp (1.20140719-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- Lars Wirzenius <liw@liw.fi>  Sat, 19 Jul 2014 16:37:17 +0100
+
+python-cliapp (1.20140315-1) unstable; urgency=low
+
+  * New upstream version.
+    - install examples (Closes: #693717)
+    - add a module docstring (Closes: #693715)
+  * Standards-Version bumped to 3.9.5. No changes required.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sat, 15 Mar 2014 09:07:44 +0000
+
+python-cliapp (1.20130808-1) unstable; urgency=low
+
+  * New upstream release. Fixes the following problems in Debian:
+    - Missing import of errno in runcmd.py (Close: #688195)
+
+ -- Lars Wirzenius <liw@liw.fi>  Thu, 08 Aug 2013 21:00:23 +0100
+
+python-cliapp (1.20130613-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Thu, 13 Jun 2013 20:18:56 +0100
+
+python-cliapp (1.20130424-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Wed, 24 Apr 2013 20:28:00 +0100
+
+python-cliapp (1.20130313-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Wed, 13 Mar 2013 21:21:40 +0000
+
+python-cliapp (1.20121216-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 16 Dec 2012 16:41:36 +0000
+
+python-cliapp (1.20120929-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sat, 29 Sep 2012 10:33:04 +0100
+
+python-cliapp (1.20120630-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sat, 30 Jun 2012 16:47:15 +0100
+
+python-cliapp (0.29-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Wed, 09 May 2012 21:58:17 +0100
+
+python-cliapp (0.28-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Tue, 08 May 2012 23:24:50 +0100
+
+python-cliapp (0.27-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Lars Wirzenius <liw@liw.fi>  Fri, 17 Feb 2012 10:43:36 +0000
+
+python-cliapp (0.26-1) unstable; urgency=low
+
+  * New upsream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sat, 11 Feb 2012 13:52:45 +0000
+
+python-cliapp (0.25.2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Lars Wirzenius <liw@liw.fi>  Wed, 08 Feb 2012 18:45:56 +0000
+
+python-cliapp (0.25.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Lars Wirzenius <liw@liw.fi>  Wed, 08 Feb 2012 13:26:13 +0000
+
+python-cliapp (0.25-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Mon, 06 Feb 2012 19:46:53 +0000
+
+python-cliapp (0.24-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sat, 14 Jan 2012 20:39:17 +0000
+
+python-cliapp (0.23-1) unstable; urgency=low
+
+  * New upstream relase.
+  * debian/python-cliapp.links, debian/control: replace embedded underscore.js
+    with a symlink to the copy provided by libjs-underscore
+  * debian/source/format: drop to 1.0 (I can't be having with quilt anymore).
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 18 Dec 2011 15:37:37 +0000
+
+python-cliapp (0.22-1) unstable; urgency=low
+
+  * New upstream release.
+  * Drop libjs-query dependency to a suggests. Most people will not be
+    reading the docs.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sat, 03 Dec 2011 18:12:54 +0000
+
+python-cliapp (0.21-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 02 Oct 2011 20:44:26 +0100
+
+python-cliapp (0.20-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sat, 17 Sep 2011 21:01:55 +0100
+
+python-cliapp (0.19-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 04 Sep 2011 20:02:10 +0100
+
+python-cliapp (0.18-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Lars Wirzenius <liw@liw.fi>  Wed, 24 Aug 2011 18:59:39 +0100
+
+python-cliapp (0.17-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Lars Wirzenius <liw@liw.fi>  Mon, 22 Aug 2011 21:29:43 +0100
+
+python-cliapp (0.16-1) unstable; urgency=low
+
+  * Replace embedded copy of jquery.js with symlink to libjs-jquery's copy.
+
+ -- Lars Wirzenius <liw@liw.fi>  Fri, 19 Aug 2011 17:26:25 +0100
+
+python-cliapp (0.15.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Lars Wirzenius <liw@liw.fi>  Wed, 03 Aug 2011 17:39:49 +0100
+
+python-cliapp (0.15-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Lars Wirzenius <liw@liw.fi>  Tue, 02 Aug 2011 19:33:07 +0100
+
+python-cliapp (0.14-1) unstable; urgency=low
+
+  * New upstream release.
+    - Start and end of program are now logged. This makes it easier to read
+      log files.
+    - Commands run by the `runcmd` method are now logged.
+    - Bugfix: `runcmd` now passes extra arguments to `subprocess.Popen`.
+    - A `Settings.require` method is added, so that it's easy to fail if the
+      user has failed the give an option that is required in a given situation.
+      (Mandatory options are a bit weird, but sometimes they happen.)
+    - Subcommands may now be added explicitly, using the
+      `Application.add_subcommand` method. This is helpful for applications
+      that support plugins, for example.
+
+ -- Lars Wirzenius <liw@liw.fi>  Wed, 20 Jul 2011 20:33:04 +0100
+
+python-cliapp (0.13-1) unstable; urgency=low
+
+  * New upstream version. (Closes: #628017)
+    - previous upload was rejected (because of extra dependency),
+      and then a new upstream version happened, so this should be
+      the real first upload to Debian
+  * debian/copyright now follows current DEP5 spec.
+  * debian/control: long description tweaked a bit to more comprehensive.
+  * packaging updated to use dh_python2.
+  * debian/rules: cleans up better.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sat, 18 Jun 2011 20:01:35 +0100
+
+python-cliapp (0.12-1) unstable; urgency=low
+
+  * Upload for Debian.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 29 May 2011 15:31:20 +0100
+
+python-cliapp (0.11) squeeze; urgency=low
+
+  * New upstream release.
+
+ -- Lars Wirzenius <liw@liw.fi>  Wed, 18 May 2011 06:34:55 +0100
+
+python-cliapp (0.10) squeeze; urgency=low
+
+  * New upstream release.
+
+ -- Lars Wirzenius <liw@liw.fi>  Thu, 07 Apr 2011 13:53:06 +0100
+
+python-cliapp (0.9) squeeze; urgency=low
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Mon, 21 Mar 2011 20:54:19 +0000
+
+python-cliapp (0.8) squeeze; urgency=low
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 20 Mar 2011 09:46:01 +0000
+
+python-cliapp (0.7) squeeze; urgency=low
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sat, 12 Mar 2011 12:20:04 +0000
+
+python-cliapp (0.6) squeeze; urgency=low
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sat, 19 Feb 2011 12:45:27 +0000
+
+python-cliapp (0.5) squeeze; urgency=low
+
+  * New upstream release.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 13 Feb 2011 09:36:27 +0000
+
+python-cliapp (0.4) squeeze; urgency=low
+
+  * New upstream release.
+    - fix --version
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 30 Jan 2011 12:27:17 +0000
+
+python-cliapp (0.3) squeeze; urgency=low
+
+  * New release.
+    - set defaults correctly for settings with dashes in names
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 23 Jan 2011 16:51:40 +0000
+
+python-cliapp (0.2) squeeze; urgency=low
+
+  * New release.
+    - add defaults to all settings types
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 23 Jan 2011 16:31:37 +0000
+
+python-cliapp (0.1) squeeze; urgency=low
+
+  * Initial packaging. This is not intended to be uploaded to Debian, so
+    no closing of an ITP bug.
+
+ -- Lars Wirzenius <liw@liw.fi>  Thu, 20 Jan 2011 22:13:38 +0200

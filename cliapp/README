@@ -1,0 +1,50 @@
+README for cliapp
+=================
+
+cliapp is a Python framework for Unix-like command line programs.
+The scaffolding to set up a command line parser, open each input
+file, read each line of input, etc, is the same in each program.
+Only the logic of what to do with each line differs.
+
+See the API documentation on the `doc` subdirectory for details
+(or see <http://code.liw.fi/cliapp/docs/> for a pre-formatted version).
+
+Example
+-------
+
+See the files `example.py` and `example2.py` for examples of how to
+use the framework.
+
+Version numbering
+-----------------
+
+cliapp version numbers are of the form `API.DATE`, where `API` starts
+at 1, and gets incremented if the application API changes in an
+incompatible way. `DATE` is the date of the release.
+
+Hacking
+-------
+
+To run the test suite:
+
+   ./check
+
+Legalese
+--------
+
+* Copyright (C) 2011-2017  Lars Wirzenius
+* Copyright (C) 2012-2015  Codethink Limited
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
