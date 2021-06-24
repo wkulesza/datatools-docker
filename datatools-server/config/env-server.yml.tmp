@@ -1,0 +1,12 @@
+AUTH0_DOMAIN: {insert here after git pull}
+AUTH0_CLIENT_ID: {insert here after git pull}
+AUTH0_PUBLIC_KEY: {insert here after git pull}
+DISABLE_AUTH: false
+OSM_VEX: http://iplaner.pl:8090/
+SPARKPOST_KEY: your-sparkpost-key
+SPARKPOST_EMAIL: email@example.com
+GTFS_DATABASE_URL: jdbc:postgresql://datatoolsgtfsdb:5432/gtfs_storage_db
+GTFS_DATABASE_USER: postgres
+GTFS_DATABASE_PASSWORD: postgres
+MONGO_HOST: datatools-mongodb:27017 # defaults to localhost:27017 (MongoDB default) if empty
+MONGO_DB_NAME: catalogue

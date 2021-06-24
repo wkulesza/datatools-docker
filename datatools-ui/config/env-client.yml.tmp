@@ -1,0 +1,10 @@
+AUTH0_CLIENT_ID: {insert yours after git pull}
+AUTH0_DOMAIN: {insert yours after git pull}
+#MAPZEN_TURN_BY_TURN_KEY: $MAPZEN_TURN_BY_TURN_KEY
+GRAPH_HOPPER_KEY: {insert yours after git pull}
+DISABLE_AUTH: false
+#MAPBOX_ACCESS_TOKEN: $MAPBOX_ACCESS_TOKEN
+MAPBOX_ACCESS_TOKEN: {insert yours after git pull}
+MAPBOX_MAP_ID: mapbox.streets
+MAPBOX_ATTRIBUTION: <a href="https://www.mapbox.com/about/maps/" target="_blank">&copy; Mapbox &copy; OpenStreetMap</a> <a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a>
+# R5_URL: http://localhost:8080
